@@ -3,7 +3,7 @@ import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../config/helpers/human_formats.dart';
+import '../../../config/helpers/human_formats.dart';
 
 class MovieHorizontalListview extends StatefulWidget {
   final List<Movie> movies;
