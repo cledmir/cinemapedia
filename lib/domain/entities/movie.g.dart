@@ -92,7 +92,7 @@ const MovieSchema = CollectionSchema(
   serialize: _movieSerialize,
   deserialize: _movieDeserialize,
   deserializeProp: _movieDeserializeProp,
-  idName: r'isorId',
+  idName: r'isarId',
   indexes: {},
   links: {},
   embeddedSchemas: {},
@@ -168,7 +168,7 @@ Movie _movieDeserialize(
     voteAverage: reader.readDouble(offsets[12]),
     voteCount: reader.readLong(offsets[13]),
   );
-  object.isorId = id;
+  object.isarId = id;
   return object;
 }
 
@@ -213,7 +213,7 @@ P _movieDeserializeProp<P>(
 }
 
 Id _movieGetId(Movie object) {
-  return object.isorId ?? Isar.autoIncrement;
+  return object.isarId ?? Isar.autoIncrement;
 }
 
 List<IsarLinkBase<dynamic>> _movieGetLinks(Movie object) {
@@ -221,11 +221,11 @@ List<IsarLinkBase<dynamic>> _movieGetLinks(Movie object) {
 }
 
 void _movieAttach(IsarCollection<dynamic> col, Id id, Movie object) {
-  object.isorId = id;
+  object.isarId = id;
 }
 
 extension MovieQueryWhereSort on QueryBuilder<Movie, Movie, QWhere> {
-  QueryBuilder<Movie, Movie, QAfterWhere> anyIsorId() {
+  QueryBuilder<Movie, Movie, QAfterWhere> anyIsarId() {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(const IdWhereClause.any());
     });
@@ -233,66 +233,66 @@ extension MovieQueryWhereSort on QueryBuilder<Movie, Movie, QWhere> {
 }
 
 extension MovieQueryWhere on QueryBuilder<Movie, Movie, QWhereClause> {
-  QueryBuilder<Movie, Movie, QAfterWhereClause> isorIdEqualTo(Id isorId) {
+  QueryBuilder<Movie, Movie, QAfterWhereClause> isarIdEqualTo(Id isarId) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IdWhereClause.between(
-        lower: isorId,
-        upper: isorId,
+        lower: isarId,
+        upper: isarId,
       ));
     });
   }
 
-  QueryBuilder<Movie, Movie, QAfterWhereClause> isorIdNotEqualTo(Id isorId) {
+  QueryBuilder<Movie, Movie, QAfterWhereClause> isarIdNotEqualTo(Id isarId) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
             .addWhereClause(
-              IdWhereClause.lessThan(upper: isorId, includeUpper: false),
+              IdWhereClause.lessThan(upper: isarId, includeUpper: false),
             )
             .addWhereClause(
-              IdWhereClause.greaterThan(lower: isorId, includeLower: false),
+              IdWhereClause.greaterThan(lower: isarId, includeLower: false),
             );
       } else {
         return query
             .addWhereClause(
-              IdWhereClause.greaterThan(lower: isorId, includeLower: false),
+              IdWhereClause.greaterThan(lower: isarId, includeLower: false),
             )
             .addWhereClause(
-              IdWhereClause.lessThan(upper: isorId, includeUpper: false),
+              IdWhereClause.lessThan(upper: isarId, includeUpper: false),
             );
       }
     });
   }
 
-  QueryBuilder<Movie, Movie, QAfterWhereClause> isorIdGreaterThan(Id isorId,
+  QueryBuilder<Movie, Movie, QAfterWhereClause> isarIdGreaterThan(Id isarId,
       {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
-        IdWhereClause.greaterThan(lower: isorId, includeLower: include),
+        IdWhereClause.greaterThan(lower: isarId, includeLower: include),
       );
     });
   }
 
-  QueryBuilder<Movie, Movie, QAfterWhereClause> isorIdLessThan(Id isorId,
+  QueryBuilder<Movie, Movie, QAfterWhereClause> isarIdLessThan(Id isarId,
       {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
-        IdWhereClause.lessThan(upper: isorId, includeUpper: include),
+        IdWhereClause.lessThan(upper: isarId, includeUpper: include),
       );
     });
   }
 
-  QueryBuilder<Movie, Movie, QAfterWhereClause> isorIdBetween(
-    Id lowerIsorId,
-    Id upperIsorId, {
+  QueryBuilder<Movie, Movie, QAfterWhereClause> isarIdBetween(
+    Id lowerIsarId,
+    Id upperIsarId, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IdWhereClause.between(
-        lower: lowerIsorId,
+        lower: lowerIsarId,
         includeLower: includeLower,
-        upper: upperIsorId,
+        upper: upperIsarId,
         includeUpper: includeUpper,
       ));
     });
@@ -706,58 +706,58 @@ extension MovieQueryFilter on QueryBuilder<Movie, Movie, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Movie, Movie, QAfterFilterCondition> isorIdIsNull() {
+  QueryBuilder<Movie, Movie, QAfterFilterCondition> isarIdIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'isorId',
+        property: r'isarId',
       ));
     });
   }
 
-  QueryBuilder<Movie, Movie, QAfterFilterCondition> isorIdIsNotNull() {
+  QueryBuilder<Movie, Movie, QAfterFilterCondition> isarIdIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'isorId',
+        property: r'isarId',
       ));
     });
   }
 
-  QueryBuilder<Movie, Movie, QAfterFilterCondition> isorIdEqualTo(Id? value) {
+  QueryBuilder<Movie, Movie, QAfterFilterCondition> isarIdEqualTo(Id? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'isorId',
+        property: r'isarId',
         value: value,
       ));
     });
   }
 
-  QueryBuilder<Movie, Movie, QAfterFilterCondition> isorIdGreaterThan(
+  QueryBuilder<Movie, Movie, QAfterFilterCondition> isarIdGreaterThan(
     Id? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'isorId',
+        property: r'isarId',
         value: value,
       ));
     });
   }
 
-  QueryBuilder<Movie, Movie, QAfterFilterCondition> isorIdLessThan(
+  QueryBuilder<Movie, Movie, QAfterFilterCondition> isarIdLessThan(
     Id? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'isorId',
+        property: r'isarId',
         value: value,
       ));
     });
   }
 
-  QueryBuilder<Movie, Movie, QAfterFilterCondition> isorIdBetween(
+  QueryBuilder<Movie, Movie, QAfterFilterCondition> isarIdBetween(
     Id? lower,
     Id? upper, {
     bool includeLower = true,
@@ -765,7 +765,7 @@ extension MovieQueryFilter on QueryBuilder<Movie, Movie, QFilterCondition> {
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'isorId',
+        property: r'isarId',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -1862,15 +1862,15 @@ extension MovieQuerySortThenBy on QueryBuilder<Movie, Movie, QSortThenBy> {
     });
   }
 
-  QueryBuilder<Movie, Movie, QAfterSortBy> thenByIsorId() {
+  QueryBuilder<Movie, Movie, QAfterSortBy> thenByIsarId() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'isorId', Sort.asc);
+      return query.addSortBy(r'isarId', Sort.asc);
     });
   }
 
-  QueryBuilder<Movie, Movie, QAfterSortBy> thenByIsorIdDesc() {
+  QueryBuilder<Movie, Movie, QAfterSortBy> thenByIsarIdDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'isorId', Sort.desc);
+      return query.addSortBy(r'isarId', Sort.desc);
     });
   }
 
@@ -2090,9 +2090,9 @@ extension MovieQueryWhereDistinct on QueryBuilder<Movie, Movie, QDistinct> {
 }
 
 extension MovieQueryProperty on QueryBuilder<Movie, Movie, QQueryProperty> {
-  QueryBuilder<Movie, int, QQueryOperations> isorIdProperty() {
+  QueryBuilder<Movie, int, QQueryOperations> isarIdProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'isorId');
+      return query.addPropertyName(r'isarId');
     });
   }
 
